@@ -53,7 +53,6 @@ def inicio():
                 RutaCaratula
             FROM peliculas
             ORDER BY Titulo
-            LIMIT 100
             """
         )
 
