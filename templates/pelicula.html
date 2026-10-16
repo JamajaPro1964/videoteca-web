@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>{{ pelicula["Titulo"] }}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+                           filename='css/style.css') }}">
+</head>
+
+<body>
+
+<a class="volver" href="/">⬅ Volver a la videoteca</a>
+
+<div class="detalle">
+
+    <div class="poster-grande">
+
+        {% if pelicula["RutaCaratula"] %}
+
+        <img src="/static/caratulas/{{ pelicula['RutaCaratula'].split('\\')[-1].replace(':','') }}">
+
+        {% endif %}
+
+    </div>
+
+    <div class="info">
+
+        <h1>{{ pelicula["Titulo"] }}</h1>
+
+        <p>
+            <strong>Año:</strong>
+            {{ pelicula["Anio"]|int }}
+        </p>
+
+        <p>
+            <strong>Formato:</strong>
+            {{ pelicula["Formato"] if pelicula["Formato"] else "-" }}
+        </p>
+
+        <p>
+            <strong>Resolución:</strong>
+            {{ "-" if pelicula["Resolucion"] in [None, "None", ""] else pelicula["Resolucion"] }}
+        </p>
+
+        <p>
+            <strong>HDR:</strong>
+            {{ "-" if pelicula["HDR"] in [None, "None", ""] else pelicula["HDR"] }}
+        </p>
+
+        <p>
+            <strong>Audio:</strong>
+            {{ pelicula["Audio"] if pelicula["Audio"] else "-" }}
+        </p>
+
+        <p>
+            <strong>Ubicación:</strong>
+            {{ pelicula["Ubicacion"] if pelicula["Ubicacion"] else "-" }}
+        </p>
+
+        <p>
+            <strong>Género:</strong>
+            {{ pelicula["Genero"] if pelicula["Genero"] else "-" }}
+        </p>
+
+        <p>
+            <strong>Estreno:</strong>
+            {{ pelicula["FechaEstreno"] if pelicula["FechaEstreno"] else "-" }}
+        </p>
+
+    </div>
+
+</div>
+
+<h2>Sinopsis</h2>
+
+<div class="sinopsis">
+
+    {{ pelicula["Sinopsis"] }}
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Videoteca</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <h1>🎬 Videoteca</h1>
+
+    <form method="GET">
+        <input type="text"
+               name="buscar"
+               placeholder="Buscar película..."
+               value="{{ buscar }}">
+
+        <button type="submit">
+            Buscar
+        </button>
+    </form>
+</header>
+
+<div class="grid">
+
+{% for peli in peliculas %}
+
+<a class="card"
+   href="/pelicula/{{ peli[0] }}">
+
+    <div class="poster">
+
+        {% if peli[3] %}
+
+        <img src="/static/caratulas/{{ peli[3].split('\\')[-1] }}">
+
+        {% else %}
+
+        <div class="sin-imagen">
+            Sin imagen
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    <div class="titulo">
+
+        {{ peli[1] }}
+
+    </div>
+
+    <div class="anio">
+
+        {{ peli[2] }}
+
+    </div>
+
+</a>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>
